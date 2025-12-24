@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Canes Clicker made by Shu</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Snow Canvas Background -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <h1 class="game-title">Candy Canes Clicker made by Shu</h1>
+        <div class="kpi-container">
+            <span class="candy-counter" id="candy-counter">0</span>
+            <span class="candy-label">Candy Canes</span>
+        </div>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="toggle-buttons">
+        <button class="toggle-btn" id="upgrades-toggle">
+            <span>🚀</span>
+            <span class="toggle-label">Upgrades</span>
+        </button>
+        <button class="toggle-btn" id="shop-toggle">
+            <span>🛒</span>
+            <span class="toggle-label">Shop</span>
+        </button>
+        <button class="toggle-btn" id="inventory-toggle">
+            <span>🎒</span>
+            <span class="toggle-label">Backpack</span>
+        </button>
+    </div>
+
+    <!-- Sound Controls -->
+    <div class="sound-controls" id="sound-controls">
+        <label for="bg-volume">BG Music</label>
+        <input type="range" id="bg-volume" min="0" max="1" step="0.01">
+        <label for="sfx-volume">SFX / Purchases</label>
+        <input type="range" id="sfx-volume" min="0" max="1" step="0.01">
+    </div>
+
+    <!-- Purchase Success Popup -->
+    <div class="purchase-popup-overlay" id="purchase-popup-overlay">
+        <div class="purchase-popup">
+            <div class="purchase-popup-content">
+                <h2>Successfully purchased</h2>
+                <p class="purchase-item-name" id="purchase-item-name"></p>
+                <p class="purchase-continue">Click anywhere to continue.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div class="modal-overlay" id="thankyou-modal-overlay"></div>
+    <div class="modal thankyou-modal" id="thankyou-modal">
+        <div class="modal-header">
+            <h2>💻 Thank You!</h2>
+            <button class="close-btn" data-modal="thankyou-modal">×</button>
+        </div>
+        <div class="modal-content">
+            <p>Thank You for supporting the game until now. Still there's long way to go to see what's the last item is. this was purposely made for my brother, so in case you are someone who are testing the game its all ended here. But you can still play!</p>
+            <p><strong>HAVE FUN!!!!</strong></p>
+        </div>
+    </div>
+
+    <!-- Center Stage - Christmas Present -->
+    <div class="center-stage">
+        <div class="present-container" id="present-container">
+            <div class="present" id="present">🎁</div>
+            <div class="click-effect" id="click-effect"></div>
+        </div>
+    </div>
+
+    <!-- Left Side Panel - Upgrades -->
+    <div class="side-panel left-panel" id="upgrades-panel">
+        <div class="panel-header">
+            <h2>🚀 Growth Hacks</h2>
+            <button class="panel-close" data-panel="upgrades-panel">×</button>
+        </div>
+        <div class="panel-content" id="upgrades-content">
+            <!-- Upgrades will be generated dynamically -->
+        </div>
+    </div>
+
+    <!-- Right Side Panel - Shop -->
+    <div class="side-panel right-panel" id="shop-panel">
+        <div class="panel-header">
+            <h2>🛒 Asset Shop</h2>
+            <button class="panel-close" data-panel="shop-panel">×</button>
+        </div>
+        <div class="panel-content">
+            <div class="shop-item" id="shop-item-1">
+                <div class="shop-icon">💻</div>
+                <div class="shop-info">
+                    <h3>Support little software engineer student</h3>
+                    <p>Help a student developer out</p>
+                </div>
+                <button class="buy-btn" data-shop="1">
+                    <span class="price" id="shop-price-1">10000</span> 🍭
+                </button>
+            </div>
+            <div class="shop-item" id="shop-item-2">
+                <div class="shop-icon">✉️</div>
+                <div class="shop-info">
+                    <h3>Letter to Santa</h3>
+                    <p>The ultimate strategic document</p>
+                </div>
+                <button class="buy-btn" data-shop="2">
+                    <span class="price" id="shop-price-2">1000000000</span> 🍭
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Panel - Inventory -->
+    <div class="bottom-panel" id="inventory-panel">
+        <div class="panel-header">
+            <h2>🎒 Backpack</h2>
+            <button class="panel-close" data-panel="inventory-panel">×</button>
+        </div>
+        <div class="panel-content inventory-grid">
+            <div class="inventory-item locked" id="inv-item-1" data-item="1">
+                <div class="inv-icon">💻</div>
+                <div class="inv-label">Support</div>
+            </div>
+            <div class="inventory-item locked" id="inv-item-2" data-item="2">
+                <div class="inv-icon">✉️</div>
+                <div class="inv-label">Letter to Santa</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game End Modal -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal game-end-modal" id="game-end-modal">
+        <div class="modal-header">
+            <h2>📧 Strategic Partnership Proposal</h2>
+            <button class="close-btn" data-modal="game-end-modal">×</button>
+        </div>
+        <div class="modal-content email-content">
+            <div class="email-header">
+                <div class="email-field">
+                    <strong>Subject:</strong> Strategic Partnership Proposal (Monster Hunter Wilds)
+                </div>
+            </div>
+            <div class="email-body" id="email-body">
+                <p>To the Oatta (Oat + Santa, get it? LOLOL),</p>
+                <p>I am writing to propose a strategic deal. I'm not doing chores, but look at this: I built you an entire website to play. It's like cookiie clicker game. I actually think what should I offer but then I'm a flippin softwarre student so I decided to make this game website. Tooks ours of my life away lol.</p>
+                <p><strong>My Offer:</strong> This clicking ahh game.</p>
+                <p><strong>The Ask:</strong> Monster Hunter Wilds.</p>
+            </div>
+            <button class="approve-btn" id="approve-btn">APPROVE BUDGET</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
