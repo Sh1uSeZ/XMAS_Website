@@ -456,7 +456,7 @@ body {
 /* Sound controls styling */
 .sound-controls {
     position: fixed;
-    top: 320px; /* moved lower to avoid overlapping toggle buttons */
+    top: 420px; /* moved lower to sit further below the present */
     left: 50%;
     transform: translateX(-50%);
     background: rgba(15, 23, 42, 0.95);
@@ -848,7 +848,7 @@ body {
 
 .sound-controls {
     position: fixed;
-    top: 250px;
+    top: 600px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(15, 23, 42, 0.95);
